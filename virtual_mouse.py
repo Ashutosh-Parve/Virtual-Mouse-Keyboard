@@ -61,15 +61,24 @@ while True:
             plocX, plocY = clocX, clocY
 
         # Both Index and Middle fingers up = Click Mode
+        # Both Index and Middle fingers up = Left Click Mode
         if fingers and fingers[1] == 1 and fingers[2] == 1:
-            x2, y2 = lmList[12][1], lmList[12][2]
             length, img, lineInfo = tracker.findDistance(8, 12, img)
 
             if length < 40:
                 cv2.circle(img, (lineInfo[4], lineInfo[5]), 15, (0, 255, 0), cv2.FILLED)
                 pyautogui.click()
-                time.sleep(0.3)  # prevents multiple clicks per pinch
+                time.sleep(0.3)
 
+        # Only Thumb and Index up = Right Click Mode
+        if fingers and fingers[0] == 1 and fingers[1] == 1 and fingers[2] == 0 and fingers[3] == 0 and fingers[4] == 0:
+            length, img, lineInfo = tracker.findDistance(4, 8, img)
+
+            if length < 40:
+                cv2.circle(img, (lineInfo[4], lineInfo[5]), 15, (0, 0, 255), cv2.FILLED)
+                pyautogui.rightClick()
+                time.sleep(0.3)
+                
             pyautogui.moveTo(clocX, clocY)
             plocX, plocY = clocX, clocY
 

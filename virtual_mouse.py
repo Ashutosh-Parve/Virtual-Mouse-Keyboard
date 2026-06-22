@@ -6,7 +6,7 @@ from hand_tracking import HandTracker
 import math
 
 # Disable pyautogui fail-safe (optional, be careful)
-pyautogui.FAILSAFE = True
+pyautogui.FAILSAFE = False
 
 # Screen size
 wScreen, hScreen = pyautogui.size()
@@ -78,7 +78,17 @@ while True:
                 cv2.circle(img, (lineInfo[4], lineInfo[5]), 15, (0, 0, 255), cv2.FILLED)
                 pyautogui.rightClick()
                 time.sleep(0.3)
-                
+        # Index + Middle + Ring + Pinky up, Thumb down = Scroll Mode
+        if fingers and fingers[0] == 0 and fingers[1] == 1 and fingers[2] == 1 and fingers[3] == 1 and fingers[4] == 1:
+            cv2.putText(img, 'Scroll Mode', (frameR, 50), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 255), 2)
+
+            # y1 = index fingertip y-position (already calculated above)
+            if y1 < hCam // 2 - 40:
+                pyautogui.scroll(50)   # scroll up
+            elif y1 > hCam // 2 + 40:
+                pyautogui.scroll(-50)  # scroll down
+
+
             pyautogui.moveTo(clocX, clocY)
             plocX, plocY = clocX, clocY
 

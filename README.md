@@ -96,7 +96,7 @@ python hand_tracking.py
 ## 🗺️ Project Roadmap
 
 - [x] Phase 1 — Hand Tracking
-- [ ] Phase 2 — Virtual Mouse (cursor movement)
+- [x] Phase 2 — Virtual Mouse (cursor movement)
 - [ ] Phase 3 — Click gestures
 - [ ] Phase 4 — Scroll gestures
 - [ ] Phase 5 — Virtual Keyboard

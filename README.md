@@ -1,6 +1,6 @@
 # 🖱️⌨️ Virtual Mouse & Keyboard
 
-Control your computer using **hand gestures** — no physical mouse or keyboard needed!
+Control your computer completely **hands-free** using hand gestures detected through your webcam — no physical mouse or keyboard needed!
 
 Built with Python, OpenCV, and MediaPipe.
 
@@ -14,17 +14,21 @@ Built with Python, OpenCV, and MediaPipe.
 ## 🎯 Features
 
 ### 🖱️ Virtual Mouse
-- ☝️ Move cursor with index finger
-- 👌 Left click — index + thumb pinch
-- ✌️ Right click — index + middle finger touch
-- 📜 Scroll up/down with gestures
-- 🖐️ Drag and drop
+| Gesture | Action |
+|---|---|
+| ☝️ Index finger up | Move cursor |
+| ✌️ Index + Middle pinch | Left Click |
+| 👌 Thumb + Index pinch | Right Click |
+| 🤚 4 fingers up (no thumb) | Scroll Up/Down |
 
 ### ⌨️ Virtual Keyboard
-- Full QWERTY layout on screen
-- Type letters, words, sentences
-- Space, Backspace, Enter support
-- Hover + pinch to type
+| Gesture | Action |
+|---|---|
+| ☝️ Index finger hover | Highlight key |
+| 🖕 Middle finger curl | Type instantly |
+| ⏱️ Hold 1.5 seconds | Auto type (dwell) |
+| SPACE key | Insert space |
+| DEL key | Backspace |
 
 ---
 
@@ -34,7 +38,7 @@ Built with Python, OpenCV, and MediaPipe.
 |---|---|
 | Python 3.12 | Core language |
 | OpenCV | Webcam & image processing |
-| MediaPipe | Hand tracking (21 landmarks) |
+| MediaPipe 0.10.13 | Hand tracking (21 landmarks) |
 | PyAutoGUI | Mouse & keyboard control |
 | NumPy | Math calculations |
 | Pynput | Input control |
@@ -47,15 +51,15 @@ Virtual-Mouse-Keyboard/
 
 │
 
-├── hand_tracking.py       # Hand detection module
+├── hand_tracking.py       # Hand detection module (MediaPipe)
 
-├── virtual_mouse.py       # Mouse control logic
+├── virtual_mouse.py       # Mouse control — move, click, scroll
 
-├── virtual_keyboard.py    # On-screen keyboard
+├── virtual_keyboard.py    # On-screen keyboard — hover & type
 
 ├── utils.py               # Helper functions
 
-├── requirements.txt       # Dependencies
+├── requirements.txt       # All dependencies
 
 └── assets/                # Images and icons
 
@@ -65,52 +69,90 @@ Virtual-Mouse-Keyboard/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YourUsername/Virtual-Mouse-Keyboard.git
+git clone https://github.com/ashutoshparve/Virtual-Mouse-Keyboard.git
 cd Virtual-Mouse-Keyboard
 ```
 
 ### 2. Install dependencies
 ```bash
-pip install -r requirements.txt
+pip install mediapipe==0.10.13
+pip install opencv-python pyautogui numpy pynput
 ```
 
-### 3. Run Hand Tracking (Phase 1)
+### 3. Run Virtual Mouse
 ```bash
-python hand_tracking.py
+python virtual_mouse.py
+```
+
+### 4. Run Virtual Keyboard
+```bash
+python virtual_keyboard.py
 ```
 
 ---
 
-## 🤌 Hand Gestures Guide
+## 🤌 How It Works
+Webcam captures frames
 
-| Gesture | Action |
-|---|---|
-| ☝️ Index finger up | Move cursor |
-| 👌 Index + Thumb pinch | Left Click |
-| ✌️ Index + Middle touch | Right Click |
-| 🤙 Two fingers up | Scroll |
-| 🖐️ Open palm | Stop/Pause |
+↓
+
+OpenCV processes each frame
+
+↓
+
+MediaPipe detects 21 hand landmarks
+
+↓
+
+Gesture Recognition checks finger positions
+
+↓
+
+PyAutoGUI controls mouse / keyboard
+
+↓
+
+Your computer responds!
+
+---
+
+## ⚠️ Requirements
+
+- Python 3.12+
+- Webcam
+- Good lighting (MediaPipe needs clear hand visibility)
+- mediapipe==0.10.13 (newer versions have compatibility issues)
 
 ---
 
 ## 🗺️ Project Roadmap
 
-- [x] Phase 1 — Hand Tracking
+- [x] Phase 1 — Hand Tracking (21 landmarks)
 - [x] Phase 2 — Virtual Mouse (cursor movement)
-- [x] Phase 3 — Left click gesture
-- [x] Phase 4 — Right click gesture
+- [x] Phase 3 — Left Click gesture
+- [x] Phase 4 — Right Click gesture
 - [x] Phase 5 — Scroll gesture
-- [ ] Phase 6 — Volume & Brightness control
+- [x] Phase 6 — Virtual Keyboard (hover + dwell + middle finger click)
+- [ ] Phase 7 — Volume Controller
+- [ ] Phase 8 — Brightness Controller
+
+---
+
+## 💡 Known Limitations
+
+- Cursor may shake slightly due to natural hand tremor (this is normal for all gesture-based systems)
+- Requires good lighting for accurate hand detection
+- MediaPipe version 0.10.13 required — newer versions removed `solutions` API
 
 ---
 
 ## 👨‍💻 Author
 
-**Ashut**  
-[GitHub](https://github.com/YourUsername)
+**Ashutosh**
+[GitHub](https://github.com/ashutoshparve)
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.

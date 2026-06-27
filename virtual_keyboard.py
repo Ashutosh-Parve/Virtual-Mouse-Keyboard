@@ -16,7 +16,7 @@ KEY_W, KEY_H = 45, 45
 SPACE_W = 90
 DEL_W = 70
 START_X = 15
-START_Y = 280
+START_Y = 240
 GAP_X = 50
 GAP_Y = 52
 DWELL_TIME = 1.5
@@ -190,8 +190,8 @@ while True:
         dwell_progress = dwell_progress if current_hover else 0
     )
 
-    cv2.rectangle(img, (10, 245), (630, 275), (20, 20, 20), cv2.FILLED)
-    cv2.putText(img, "Text: " + typed_text, (15, 268),
+    cv2.rectangle(img, (10, 205), (630, 235), (20, 20, 20), cv2.FILLED)
+    cv2.putText(img, "Text: " + typed_text, (15, 228),
                 cv2.FONT_HERSHEY_PLAIN, 1.2, (255, 255, 255), 2)
 
     # ── FPS ───────────────────────────────────────────────
